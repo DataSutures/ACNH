@@ -13,16 +13,26 @@
         <li><a href="patientRecords.php">Patients</a></li>
         <li><a href="productRecords.php">Products</a></li>
         <li><a href="supplierRecords.php">Suppliers</a></li>
-        </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="PatientOrderHistory2.php">Patient Order History</a></li>
+            <li><a href="SupplierProductsList.php">Supplier Products List</a></li>
+            <li><a href="SalesReport.php">Employee Sales Report</a></li>
+          </ul>
+        </li>
+      </ul>
         <form class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <a type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></a>
       </form>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+ </body>
 </html>
-</body>
+

@@ -5,22 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="scripts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  body { padding-top: 0px; padding-bottom: 50px; }
-  div .form-group.required.control-label:before{
-   color: red;
-   content: "*";
-   position: absolute;
-   margin-left: -10px;
-   }
-  </style>
 </head>
 <?php include 'nav_bar.php'; ?>
 <body>
 <div class="container">
-<h2>Add Product</h2>
+<h1>Add Product</h1>
 <?php
 
 if(isset($_POST['update_btn'])){
@@ -39,14 +32,20 @@ if(isset($_POST['update_btn'])){
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
-	$sql = "INSERT INTO Product (pID, sID, pname, tabCount, price, noInStock, description) VALUES ('$pID', '$sID', '$pname', '$tabCount', '$price', '$noInStock', '$description')";
+	$sql = "INSERT INTO Product (pID, sID, pname, tabCount, price, noInStock, description) VALUES ('$pID', '$sID', '$pname', CASE WHEN '$tabCount' = '' THEN NULL END, '$price', CASE WHEN '$noInStock' = '' THEN 0 END, '$description')";
 
 	$result = $conn->query($sql);
 
-	if($result) 
-	{
-	echo '<div class="alert alert-success" role="alert">Records updated successfully!</div>';
-	}
+	if($result)
+	 { 
+	  echo '<div class="alert alert-success" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Product added successfully!</div>';
+	 }
+	 else
+	 {
+	  echo '<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Missing or Invalid Input. Try again.</div>';
+	  }
 }
 
 ?>
@@ -82,10 +81,12 @@ if(isset($_POST['update_btn'])){
 	    <input class="form-control" type="text" name="description_tb"/>
 	  </div>
 <input class="btn btn-success" type="submit" value="Submit" name="update_btn"/>
+<a class="btn btn-default" href="productRecords.php" type="button">Cancel</a>
 </form>
 </div>
 </div>
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>
 

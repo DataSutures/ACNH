@@ -5,23 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="scripts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  body { padding-top: 0px; padding-bottom: 50px; }
-  
-  div .form-group.required.control-label:before{
-	   color: red;
-	   content: "*";
-	   position: absolute;
-	   margin-left: -10px;
-	   }
-   </style>
 </head>
 <?php include 'nav_bar.php'; ?>
 <body>
 <div class="container">
-<h2>Add Employee</h2>
+<h1>Add Employee</h1>
 <?php
 
 if(isset($_POST['update_btn'])){
@@ -45,14 +37,16 @@ if(isset($_POST['update_btn'])){
 
 	$result = $conn->query($sql);
 
-	if($result) 
-	{
-		echo '<div class="alert alert-success" role="alert">Records updated successfully!</div>';
-	}
-	else
-	{
-		echo '<div class="alert alert-warning" role="alert">Missing required input or invalid.</div>';
-	}
+	if($result)
+	 { 
+	  echo '<div class="alert alert-success" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Employee added successfully!</div>';
+	 }
+	 else
+	 {
+	  echo '<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Missing or Invalid Input. Check Primary Physician ID.</div>';
+	  }
 }
 ?>
 <div class = "row">
@@ -64,11 +58,11 @@ if(isset($_POST['update_btn'])){
 	  </div>
 	  <div class="form-group required control-label">
 	    <label>First Name</label>
-	    <input class="form-control" required="required" type="text" name="fname_tb" placeholder="ex: John"/>
+	    <input class="form-control" required="required" type="text" name="fname_tb"/>
 	  </div>
 	  <div class="form-group">
 	    <label>Last Name</label>
-	    <input class="form-control" type="text" name="lname_tb" placeholder="ex: Smith"/>
+	    <input class="form-control" type="text" name="lname_tb"/>
 	  </div>
 	  <div class="form-group">
 	    <label>Phone</label>
@@ -76,11 +70,11 @@ if(isset($_POST['update_btn'])){
 	  </div>
 	  <div class="form-group">
 	    <label>Street</label>
-	    <input class="form-control" type="text" name="street_tb" placeholder="ex: 123 Dumpy Lane"/>
+	    <input class="form-control" type="text" name="street_tb"/>
 	  </div>
 	  <div class="form-group">
 	    <label>City</label>
-	    <input class="form-control" type="text" name="city_tb" placeholder="ex: Lafayette"/>
+	    <input class="form-control" type="text" name="city_tb"/>
 	  </div>
 	  <div class="form-group">
 	    <label>State</label>
@@ -92,10 +86,12 @@ if(isset($_POST['update_btn'])){
 	  </div>
 
 <input class="btn btn-success" type="submit" value="Submit" name="update_btn"/>
+<a class="btn btn-default" href="employeeRecords.php" type="button">Cancel</a>
 </form>
 </div>
 </div>
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>
 
